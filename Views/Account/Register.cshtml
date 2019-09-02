@@ -1,0 +1,97 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+@{
+    ViewData["Title"] = "Log in";
+}
+
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+<style type="text/css">
+    #main1 {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        background: url(../images/BG.png)no-repeat center center;
+        background-size: cover;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        color: #3e3e3e;
+    }
+
+    #main2 {
+        height: 100%;
+        padding-top: 200px;
+        background-color: rgba(255, 255, 255, 0.45);
+    }
+</style>
+
+<div id="main1" class="col-md-12">
+    <div id="main2" class="col-md-4 col-md-offset-4">
+        <h3>用户注册</h3>
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <h4>创建一个新用户</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName">用户名</label>
+                <input asp-for="UserName" class="form-control" style="background-color:rgba(255, 255, 255, 0.6)" placeholder="用户名至少2位汉字"/>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">邮箱</label>
+                <input asp-for="Email" class="form-control" style="background-color:rgba(255, 255, 255, 0.6)" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">密码</label>
+                <input asp-for="Password" class="form-control" style="background-color:rgba(255, 255, 255, 0.6)" placeholder="密码最短需要8位"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword">确认密码</label>
+                <input asp-for="ConfirmPassword" class="form-control" style="background-color:rgba(255, 255, 255, 0.6)" placeholder="再次输入密码"/>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="form-inline">
+                    <img id="mixImg" title="看不清？点击更换" src="/Account/MixVerifyCode" alt="vcode" onclick="this.src=this.src+'?'" style="cursor:pointer;" />
+                    <input id="useCode" name="useCode" class="form-control" style="background-color:rgba(255, 255, 255, 0.6);width:120px" />
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">注册</button>
+            </div>
+            <div class="form-group">
+                <p>
+                    <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">已有账户？可直接登陆</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+<script>
+    //动态修改地图视窗的高度
+    /*document.getElementById("main1").style.setProperty('height', $(window).height() - 150 + 'px');
+    document.getElementById("main2").style.setProperty('height', $(window).height() - 150 + 'px');
+
+    function resize() {
+        document.getElementById("main1").style.setProperty('height', $(window).height() - 150 + 'px');
+        document.getElementById("main2").style.setProperty('height', $(window).height() - 150 + 'px');
+
+    }
+    window.onresize = function () {
+        resize();
+    };*/
+</script>

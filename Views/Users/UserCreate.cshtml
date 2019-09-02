@@ -1,0 +1,249 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "UserCreate";
+}
+@inject UserManager<ApplicationUser> UserManager
+
+
+<style type="text/css">
+    #main1 {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        color: #3e3e3e;
+    }
+
+    #main2 {
+        height: 100%;
+        padding-top: 200px;
+    }
+
+    .row {
+        background-color: #dbdbdb;
+    }
+
+    #myModalUpdate {
+        top: 120px;
+    }
+
+    #newRow {
+        background-color: #ffffff;
+    }
+</style>
+
+<!--用户密码修改-->
+<div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">密码修改</h4>
+            </div>
+            <div class="modal-body">
+                <div id="newRow" class="row">
+                    <div class="col-md-6 col-md-offset-3">
+
+                        <div class="form-group">
+                            <label for="name">用户名</label>
+                            <input id="name" class="form-control" readonly="readonly" value="@UserManager.GetUserName(User)" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input id="email" class="form-control" readonly="readonly" value="@UserManager.GetUserAsync(User).Result.Email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="selfoldPassword">原始密码</label>
+                            <input id="selfoldPassword" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="selfnewPassword">新密码</label>
+                            <input id="selfnewPassword" class="form-control" />
+                        </div>
+                        <button id="submitNewPassword" class="btn btn-default">修改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="main1">
+    <div class="col-md-4 col-md-offset-4" id="main2">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>创建账号</h3></div>
+            <div class="panel-body">
+                <form role="form" asp-action="UserCreate" >
+                    <div class="form-group">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" class="form-control" placeholder="用户名至少2位汉字"/>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" placeholder="密码最短需要8位" autocomplete="new-password"/>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" placeholder="再次输入密码"/>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>用户权限</label>
+                        <div class="checkbox">
+                            @*@foreach (var item in (SelectList)ViewBag.RolesList)
+                                {
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="selectedRoles" value="@item.Value" />
+                                        @item.Text
+                                    </label>
+                                }*@
+                            <label class="checkbox-inline">
+                                <input id="supper" type="checkbox" name="selectedRoles" value="顶级权限" />顶级权限
+                            </label>
+                            <label class="checkbox-inline">
+                                <input id="sub1" type="checkbox" name="selectedRoles" value="维修权限" />维修权限
+                            </label>
+                            <label class="checkbox-inline">
+                                <input id="sub2" type="checkbox" name="selectedRoles" value="基建权限" />基建权限
+                            </label>
+                            <label class="checkbox-inline">
+                                <input id="sub3" type="checkbox" name="selectedRoles" value="管线权限" />管线权限
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                    </div>
+                    <div class="form-group">
+                        <button id="submit" type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="新增"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;新增用户</button>
+                        <a a asp-area="" asp-controller="Users" asp-action="UserManage" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="列表"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;返回列表</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("submit").onclick = function () {
+        //div panel
+        //span text-danger
+        //;
+        setTimeout("alert('mm')", 5000)
+    }
+
+    $("#supper").change(function () {
+        if (document.getElementById('supper').checked) {
+            $("#sub1").prop('disabled', true);
+            $("#sub2").prop('disabled', true);
+            $("#sub3").prop('disabled', true);
+            $("#sub1").prop('checked', false);
+            $("#sub2").prop('checked', false);
+            $("#sub3").prop('checked', false);
+        } else {
+            $("#sub1").prop('disabled', false);
+            $("#sub2").prop('disabled', false);
+            $("#sub3").prop('disabled', false);
+        }
+
+    });
+
+    document.getElementById("xxfwButton").style.display = "none";
+    document.getElementById("jjxm").style.display = "none";
+    document.getElementById("wxxm").style.display = "none";
+    document.getElementById("gxfw").style.display = "none";
+
+    //随菜单栏大小改变变换面板位置
+    document.getElementById('change').onclick = function () {
+
+        if ($("body").hasClass("cm-menu-toggled")) {
+            if (document.getElementById("xxfwButton").style.display != "block") {
+                document.getElementById("xxfwButton").style.display = "none";
+                document.getElementById("jjxm").style.display = "none";
+                document.getElementById("wxxm").style.display = "none";
+                document.getElementById("gxfw").style.display = "none";
+                document.getElementById("xxfw1").style.display = "none";
+                document.getElementById("jjxm1").style.display = "none";
+                document.getElementById("wxxm1").style.display = "none";
+                document.getElementById("gxfw1").style.display = "none";
+            };
+        }
+
+    };
+
+    var popUpdate = function () {
+        $("#myModalUpdate").modal();
+    };
+
+    //用户密码修改
+    $("#submitNewPassword").click(function () {
+        if (document.getElementById("selfoldPassword").value == null || document.getElementById("selfoldPassword").value == '') {
+            swal(
+                '原始密码不可为空',
+                '请重新输入',
+                'warning'
+            );
+        } else if (document.getElementById("selfnewPassword").value == null || document.getElementById("selfnewPassword").value == '') {
+            swal(
+                '新密码不可为空',
+                '请重新输入',
+                'warning'
+            );
+
+        } else if (document.getElementById("selfnewPassword").value == document.getElementById("selfoldPassword").value) {
+            swal(
+                '新密码与原始密码不可相同',
+                '请重新输入',
+                'warning'
+            );
+
+        } else if (document.getElementById("selfnewPassword").value.length < 8) {
+            swal(
+                '新密码最短长度为8位',
+                '请重新输入',
+                'warning'
+            );
+
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/Users/ModifyPassword",
+                data: { name: document.getElementById("name").value, oldPassword: document.getElementById("selfoldPassword").value, newPassword: document.getElementById("selfnewPassword").value },
+                success: function (data) {
+                    if (data == "修改密码成功") {
+                        swal({
+                            title: data,
+                            text: '请重新登录',
+                            type: "success",
+                        }).then(function () {
+                            window.location = "/Account/Login"
+                            //$("#signOut")[0].click();
+                        }//虚拟点击事件;
+                        );
+                        $('#myModalUpdate').modal('hide');
+
+                    } else {
+                        swal(
+                            data,
+                            '请重新输入',
+                            'warning'
+                        );
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+    });
+</script>

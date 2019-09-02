@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using CPSSnew.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="dropdown pull-right">
+        <button class="btn btn-primary md-account-circle-white" data-toggle="dropdown"></button>
+        <ul class="dropdown-menu">
+            <li class="disabled text-center">
+                <a style="cursor:default;"><strong>用户：@UserManager.GetUserName(User)</strong></a>
+            </li>
+            <li class="divider"></li>
+            <li style="height:33px;text-align:center;line-height:33px;">
+                <button class="btn btn-link navbar-btn navbar-link" onclick="popUpdate()" style="padding:0px;"><i class="fa fa-fw fa-spinner"></i>密码修改</button>
+            </li>
+            <li class="divider"></li>
+            <li style="height:33px;text-align:center;line-height:33px;">
+                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                    <button id="signOut" type="submit" class="btn btn-link navbar-btn navbar-link" style="padding:0px;"><i class="fa fa-fw fa-sign-out"></i>注销</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <div class="dropdown pull-right">
+        <button class="btn btn-primary md-account-circle-white" data-toggle="dropdown"></button>
+        <ul class="dropdown-menu">
+            <li class="disabled text-center">
+                <a style="cursor:default;"><strong>未登录用户</strong></a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a asp-area="" asp-controller="Account" asp-action="Login"><i class="fa fa-fw fa-sign-out"></i>登录</a>
+            </li>
+        </ul>
+    </div>
+}

@@ -1,0 +1,625 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #measureButton {
+            position: absolute;
+            top: 160px;
+            right: 40px;
+            z-index: 11;
+            display: block;
+            float: right;
+            padding: 0.3rem;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 1rem;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+
+
+        #smallButton {
+            position: absolute;
+            top: 350px;
+            left: 63px;
+            display: none;
+        }
+
+        #layerTreeButton {
+            position: absolute;
+            top: 100px;
+            right: 40px;
+            z-index: 11;
+            display: block;
+            float: right;
+            padding: 0.3rem;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 1rem;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        #sceneButton {
+            position: absolute;
+            top: 220px;
+            right: 40px;
+            z-index: 11;
+            display: block;
+            float: right;
+            padding: 0.3rem;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 1rem;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        #streetSceneButton {
+            position: absolute;
+            top: 280px;
+            right: 40px;
+            z-index: 11;
+            display: block;
+            float: right;
+            padding: 0.3rem;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 1rem;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        #roadSearchButton {
+            position: absolute;
+            top: 340px;
+            right: 40px;
+            z-index: 11;
+            display: block;
+            float: right;
+            padding: 0.3rem;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 1rem;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+
+
+        #layerTree {
+            display: none;
+            width: 150px;
+            position: absolute;
+            top: 100px;
+            right: 100px;
+            z-index: 10;
+            float: right;
+            min-width: 10rem;
+            padding: 1rem;
+            margin: 0.125rem 0 0;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 1rem;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .dropdown-menu-wxlr, .dropdown-menu-wxcx, .dropdown-menu-jjcx, .dropdown-menu-jjlr, .dropdown-menu-poi, .dropdown-menu-ewgx, .dropdown-menu-kx {
+            width: 520px;
+            position: absolute;
+            top: 55px;
+            left: 60px;
+            z-index: 10;
+            display: none;
+            float: right;
+            min-width: 10rem;
+            padding: 1rem;
+            margin: 0.125rem 0 0;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 1rem;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        
+
+        #dropdown-menu-cl {
+            display: none;
+            width: 300px;
+            position: absolute;
+            top: 100px;
+            right: 100px;
+            z-index: 10;
+            float: right;
+            min-width: 10rem;
+            padding: 1rem;
+            margin: 0.125rem 0 0;
+            font-size: 1rem;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 1rem;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .dropdown-menu-wxlr {
+            width: 840px;
+        }
+
+        .dropdown-menu-ewgx {
+            height: 870px;
+            width: 680px;
+        }
+
+
+        .showing {
+            animation-name: bmd-dropdown-animation;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: 0 10%;
+        }
+
+        .hiding {
+            animation-name: bmd-dropup-animation;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0, 0, 0.58, 1.0);
+            transform-origin: 0 10%;
+        }
+
+        .showing-right {
+            animation-name: bmd-dropdown-animation;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: 100% 0;
+        }
+
+        .hiding-right {
+            animation-name: bmd-dropup-animation;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: 100% 0;
+        }
+
+        @@keyframes bmd-dropdown-animation {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @@keyframes bmd-dropup-animation {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        .top5 {
+            margin-top: 5px;
+        }
+
+        .top7 {
+            margin-top: 7px;
+        }
+
+        .top10 {
+            margin-top: 10px;
+        }
+
+        .top15 {
+            margin-top: 15px;
+        }
+
+        .top17 {
+            margin-top: 17px;
+        }
+
+        .top30 {
+            margin-top: 30px;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CPSSnew</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+        <!-- Font Awesome -->
+        <link href="~/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="~/js/nprogress/nprogress.css" rel="stylesheet">
+        <!-- jQuery custom content scroller -->
+        <link href="~/js/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+        <!-- Custom Theme Style -->
+        <!--<link href="~/css/custom.min.css" rel="stylesheet">-->
+        <link rel="stylesheet" href="~/css/site.css" />
+        <!--OpenLayers-->
+        <link rel="stylesheet" href="~/js/openLayers/css/ol.css" />
+        <link rel="stylesheet" href="~/js/openLayers/css/ol3-layerswitcher.css" />
+        <!--Viewer-->
+        <link rel="stylesheet" href="~/js/viewer/viewer.css" />
+        <!--Video-->
+        <link rel="stylesheet" href="~/js/video/video-js.min.css" />
+        <!--Tabulator-->
+        <link rel="stylesheet" href="~/js/tabulator/tabulator.min.css" />
+        <link rel="stylesheet" href="~/js/tabulator/tabulator_bootstrap.min.css" />
+        <!--flatpickr-->
+        <link rel="stylesheet" href="~/js/flatpickr/flatpickr.min.css" />
+        <!--SweetAlert2-->
+        <link rel="stylesheet" href="~/js/sweetalert2/sweetalert2.min.css" />
+        <!--bootstrap-fileinput-->
+        <link rel="stylesheet" href="~/js/bootstrap-fileinput/css/fileinput.css" />
+        <!--JQuery-ui-->
+        <link rel="stylesheet" href="~/js/jquery-ui/jquery-ui.css" />
+        <!-- Bootstrap-switch -->
+        <link rel="stylesheet" href="~/js/bootstrap-switch/bootstrap-switch.min.css" />
+        <!-- select2-->
+        <link rel="stylesheet" href="~/js/select2/select2.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="~/css/bootstrap-clearmin.min.css">
+        <link rel="stylesheet" type="text/css" href="~/css/roboto.css">
+        <link rel="stylesheet" type="text/css" href="~/css/material-design.css">
+        <link rel="stylesheet" type="text/css" href="~/css/small-n-flat.css">
+        <link rel="stylesheet" type="text/css" href="~/css/summernote.css">
+
+
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <!--openLayers-->
+        <script src="~/js/openLayers/js/ol-debug.js"></script>
+        <script src="~/js/openLayers/js/ol3-layerswitcher.js"></script>
+        <script src="~/js/openLayers/js/proj4.js"></script>
+        <script src="~/js/openLayers/js/2385.js"></script>
+        <!--Viewer-->
+        <script src="~/js/viewer/viewer.js"></script>
+        <!--Video-->
+        <script src="~/js/video/video.min.js"></script>
+        <!--Tabulator-->
+        <script src="~/js/tabulator/tabulator.js"></script>
+        <!--flatpickr-->
+        <script src="~/js/flatpickr/flatpickr.min.js"></script>
+        <script src="~/js/flatpickr/flatpickr.l10n.zh.js"></script>
+        <!--SweetAlert2-->
+        <script src="~/js/sweetalert2/sweetalert2.min.js"></script>
+        <!--bootstrap-fileinput-->
+        <script src="~/js/bootstrap-fileinput/js/fileinput.js"></script>
+        <script src="~/js/bootstrap-fileinput/js/locales/zh.js"></script>
+        <!--Echarts-->
+        <script src="~/js/echarts/echarts.js"></script>
+        <script src="~/js/echarts/infographic.js"></script>
+        <!--JQuery-ui-->
+        <script src="~/js/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Bootstrap-switch -->
+        <script src="~/js/bootstrap-switch/bootstrap-switch.min.js"></script>
+        <!-- select2-->
+        <script src="~/js/select2/select2.min.js"></script>
+        <!--moment-->
+        <script src="~/js/moment/moment.js"></script>
+        <!--html2canvas-->
+        <script src="~/js/html2canvas.js"></script>
+    </environment>
+
+
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+        <!-- Font Awesome -->
+        <link href="~/js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="~/js/nprogress/nprogress.css" rel="stylesheet">
+        <!-- jQuery custom content scroller -->
+        <link href="~/js/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+        <!-- Custom Theme Style -->
+        <!--<link href="~/css/custom.min.css" rel="stylesheet">-->
+        <link rel="stylesheet" href="~/css/site.css" />
+        <!--OpenLayers-->
+        <link rel="stylesheet" href="~/js/openLayers/css/ol.css" />
+        <link rel="stylesheet" href="~/js/openLayers/css/ol3-layerswitcher.css" />
+        <!--Viewer-->
+        <link rel="stylesheet" href="~/js/viewer/viewer.css" />
+        <!--Video-->
+        <link rel="stylesheet" href="~/js/video/video-js.min.css" />
+        <!--Tabulator-->
+        <link rel="stylesheet" href="~/js/tabulator/tabulator.min.css" />
+        <link rel="stylesheet" href="~/js/tabulator/tabulator_bootstrap.min.css" />
+        <!--flatpickr-->
+        <link rel="stylesheet" href="~/js/flatpickr/flatpickr.min.css" />
+        <!--SweetAlert2-->
+        <link rel="stylesheet" href="~/js/sweetalert2/sweetalert2.min.css" />
+        <!--bootstrap-fileinput-->
+        <link rel="stylesheet" href="~/js/bootstrap-fileinput/css/fileinput.css" />
+        <!--JQuery-ui-->
+        <link rel="stylesheet" href="~/js/jquery-ui/jquery-ui.css" />
+        <!-- Bootstrap-switch -->
+        <link rel="stylesheet" href="~/js/bootstrap-switch/bootstrap-switch.min.css" />
+        <!-- select2-->
+        <link rel="stylesheet" href="~/js/select2/select2.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="~/css/bootstrap-clearmin.min.css">
+        <link rel="stylesheet" type="text/css" href="~/css/roboto.css">
+        <link rel="stylesheet" type="text/css" href="~/css/material-design.css">
+        <link rel="stylesheet" type="text/css" href="~/css/small-n-flat.css">
+        <link rel="stylesheet" type="text/css" href="~/css/summernote.css">
+
+
+        <script src="~/js/jquery/jquery-2.1.3.min.js"></script>
+
+        <!--openLayers-->
+        <script src="~/js/openLayers/js/ol-debug.js"></script>
+        <script src="~/js/openLayers/js/ol3-layerswitcher.js"></script>
+        <script src="~/js/openLayers/js/proj4.js"></script>
+        <script src="~/js/openLayers/js/2385.js"></script>
+        <!--Viewer-->
+        <script src="~/js/viewer/viewer.js"></script>
+        <!--Video-->
+        <script src="~/js/video/video.min.js"></script>
+        <!--Tabulator-->
+        <script src="~/js/tabulator/tabulator.js"></script>
+        <!--flatpickr-->
+        <script src="~/js/flatpickr/flatpickr.min.js"></script>
+        <script src="~/js/flatpickr/flatpickr.l10n.zh.js"></script>
+        <!--SweetAlert2-->
+        <script src="~/js/sweetalert2/sweetalert2.min.js"></script>
+        <!--bootstrap-fileinput-->
+        <script src="~/js/bootstrap-fileinput/js/fileinput.js"></script>
+        <script src="~/js/bootstrap-fileinput/js/locales/zh.js"></script>
+        <!--Echarts-->
+        <script src="~/js/echarts/echarts.js"></script>
+        <script src="~/js/echarts/infographic.js"></script>
+        <!--JQuery-ui-->
+        <script src="~/js/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Bootstrap-switch -->
+        <script src="~/js/bootstrap-switch/bootstrap-switch.min.js"></script>
+        <!-- select2-->
+        <script src="~/js/select2/select2.min.js"></script>
+        <!--moment-->
+        <script src="~/js/moment/moment.js"></script>
+        <!--html2canvas-->
+        <script src="~/js/html2canvas.js"></script>
+
+
+        <script src="~/js/jquery/jquery.mousewheel.min.js"></script>
+        <script src="~/js/jquery/jquery.cookie.min.js"></script>
+        <script src="~/js/fastclick.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/clearmin.min.js"></script>
+        <script src="~/js/summernote.min.js"></script>
+        <script src="~/js/notepad.js"></script>
+
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+
+
+    <!--<environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+                asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>-->
+</head>
+
+<body class="cm-no-transition cm-1-navbar cm-menu-toggled">
+    <div id="cm-menu">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="cm-flex"><a asp-area="" asp-controller="Map" asp-action="Map"><img id="logo" src="~/images/nav/LOGO.png" width="200" style="margin-top:3px;margin-left:5px" /></a></div>
+            <div class="btn btn-primary md-menu-white" id="change" data-toggle="cm-menu"></div>
+        </nav>
+        <div id="cm-menu-content">
+            <div id="cm-menu-items-wrapper">
+                <div id="cm-menu-scroller">
+                    @await Html.PartialAsync("_indexPartial")
+                </div>
+            </div>
+        </div>
+    </div>
+    <header id="cm-header">
+        <nav class="cm-navbar cm-navbar-primary">
+            <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu" style="background-color:aqua"></div>
+            <div class="cm-flex">
+                <!--<img id="logo" src="~/images/nav/LOGO.png" width="200" style="margin-top:3px;margin-left:5px ;float:left;" />-->
+                <h1 style="float:left;">校园公共服务系统</h1>
+                <div style="float:left;margin-top:4px;padding-top:4px;padding-left:10px;">
+
+                    <button class="btn btn-default" onclick="zoomIn()" title="放大"><i class='fa fa-search-plus'></i></button>
+                    <button class="btn btn-default" onclick="zoomOut()" title="缩小"><i class='fa fa-search-minus'></i></button>
+                    <button class="btn btn-default" onclick="viewBack()" title="前一视图"><i class='fa fa-arrow-left'></i></button>
+                    <button class="btn btn-default" onclick="viewForward()" title="后一视图"><i class='fa fa-arrow-right'></i></button>
+                    <button class="btn btn-default" onclick="zoomToLayer()" title="缩放至图层"><i class='fa fa-map-o'></i></button>
+                    <button class="btn btn-default" onclick="capture()" title="截屏"><i class='fa fa-crop'></i></button>
+                    <!--<button id="roadScene" class="btn btn-default" title="街景"><i class='fa fa-globe'></i></button>-->
+                    <button id="layersButton" class="btn btn-default" title="关闭所有图层"><i class='fa fa-clone'></i></button>
+
+                </div>
+                <!--<form id="cm-search" action="index.html" method="get">
+                    <input type="search" name="q" autocomplete="off" placeholder="搜索...">
+                </form>-->
+            </div>
+            <!--<div class="pull-right">
+                <div id="cm-search-btn" class="btn btn-primary md-search-white" data-toggle="cm-search"></div>
+            </div>-->
+            <div class="dropdown pull-right">
+                <button class="btn btn-primary md-notifications-white" data-toggle="dropdown"></button>
+                <div class="popover cm-popover bottom">
+                    <div class="arrow"></div>
+                    <div class="popover-content">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item" data-toggle="modal" data-target="#myModalinfo1">
+                                <h4 class="list-group-item-heading text-overflow">
+                                    <i class="fa fa-fw fa-envelope"></i> 系统消息
+                                </h4>
+                                <p class="list-group-item-text text-overflow">系统2019.01.18更新至1.0.3</p>
+                            </a>
+                            <a href="#" class="list-group-item" data-toggle="modal" data-target="#myModalinfo2">
+                                <h4 class="list-group-item-heading">
+                                    <i class="fa fa-fw fa-envelope"></i> 系统消息
+                                </h4>
+                                <p class="list-group-item-text">系统2018.12.15更新至1.0.2</p>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <h4 class="list-group-item-heading">
+                                    <i class="fa fa-fw fa-envelope" data-toggle="modal" data-target="#myModalinfo3"></i> 系统消息
+                                </h4>
+                                <p class="list-group-item-text">系统2018.11.15更新至1.0.1</p>
+                            </a>
+                        </div>
+                        <div style="padding:10px"><a class="btn btn-success btn-block" href="#">关闭</a></div>
+                    </div>
+                </div>
+            </div>
+
+            @await Html.PartialAsync("_LoginPartial")
+
+        </nav>
+    </header>
+
+    <div class="modal fade" id="myModalinfo1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">系统2019.01.18更新至1.0.3</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>修复问题：</h5>
+                    1、解决多模块间绘图工具冲突的问题<br />
+                    2、修改了管线模块仅对可见图层进行框选统计（之前是对所有图层统计）<br />
+                    3、修复了管线模块分图层控制显示的问题<br />
+                    4、优化了管线模块统计图显示效果（将数据为0的字段剔除）<br />
+                    5、优化了POI图层控件（将分类快捷检索结果同步到可见图层上）<br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="myModalinfo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">系统2018.12.15更新至1.0.2</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>修复问题：</h5>
+                    1、修改了维修上报模块图片视频上传与数据上传不一致的问题、无法连续上报的问题及绘图工具在保存信息窗口关闭后无法收回的问题<br />
+                    2、修复了地图缩放按钮与比例尺、用户管理界面在菜单栏展开时被遮挡的问题<br />
+                    3、对维修上报信息不全的情况进行用户提示，对上报人名称与用户登录名称同步<br />
+                    4、对维修信息列表添加了删除功能（同时删除本地图片视频文件和数据库数据）<br />
+                    5、为维修上报模块中增加了判断：是否有中间数字ID文件被删除后导致计数与有原ID发生冲突<br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="modal fade" id="myModalinfo3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">系统2018.12.15更新至1.0.1</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>修复问题：</h5>
+                    1、解决多模块间绘图工具冲突的问题<br />
+                    2、修改了管线模块仅对可见图层进行框选统计（之前是对所有图层统计）<br />
+                    3、修复了地图缩放按钮与比例尺、用户管理界面在菜单栏展开时被遮挡的问题<br />
+                    4、对维修上报信息不全的情况进行用户提示，对上报人名称与用户登录名称同步<br />
+                    5、对维修信息列表添加了删除功能（同时删除本地图片视频文件和数据库数据）<br />
+                    6、为维修上报模块中增加了判断：是否有中间数字ID文件被删除后导致计数与有原ID发生冲突<br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    @RenderBody()
+
+    <environment include="Development">
+
+        <script src="~/js/jquery/jquery.mousewheel.min.js"></script>
+        <script src="~/js/jquery/jquery.cookie.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/clearmin.min.js"></script>
+        <script src="~/js/fastclick.min.js"></script>
+
+        <script src="~/js/summernote.min.js"></script>
+        <script src="~/js/notepad.js"></script>
+
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment names="Staging,Production">
+
+    </environment>
+
+    <!--<environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment> -->
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+

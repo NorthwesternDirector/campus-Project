@@ -1,0 +1,114 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<style type="text/css">
+    #main1 {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        background: url(../images/BG.png)no-repeat center center;
+        background-size: cover;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        color: #3e3e3e;
+    }
+
+    #main2 {
+        height: 100%;
+        padding-top: 200px;
+        background-color: rgba(255, 255, 255, 0.45);
+    }
+</style>
+
+<div id="main1" class="col-md-12 ">
+
+    <div id="main2" class="col-md-4 col-md-offset-4">
+        <img id="logo" src="~/images/nav/LOGO.png" width="200" /><h2 style="color:white;">校园公共服务系统</h2>
+        <h3>用户登录</h3>
+        <section>
+            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <h4>使用一个本地账号登陆</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <!--<div class="form-group">
+                    <label asp-for="Email">邮箱</label>
+                    <input asp-for="Email" class="form-control" style="background-color:rgba(255, 255, 255, 0.6)" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>-->
+                <div class="form-group">
+                    <label asp-for="UserName">用户名</label>
+                    <input asp-for="UserName" class="form-control" style="background-color:rgba(255, 255, 255, 0.6)" placeholder="请输入用户名"//>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">密码</label>
+                    <input asp-for="Password" class="form-control" style="background-color:rgba(255, 255, 255, 0.6)" placeholder="请输入密码"/>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="form-inline">
+                        <img id="mixImg" title="看不清？点击更换" src="/Account/MixVerifyCode" alt="vcode" onclick="this.src=this.src+'?'" style="cursor:pointer;" />
+                        <input id="useCode" name="useCode" class="form-control" style="background-color:rgba(255, 255, 255, 0.6);width:120px" placeholder="请输入验证码"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="RememberMe">
+                            <input asp-for="RememberMe" />记住该账号
+                            @*@Html.DisplayNameFor(m => m.RememberMe)*@
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button id="login" type="submit" class="btn btn-default">登录</button>
+                </div>
+                <div class="form-group">
+                    <!-- <p>
+            <a asp-action="ForgotPassword">忘记密码?</a>
+        </p>-->
+                    <p>
+                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">还没有账号？创建一个新用户</a>
+                    </p>
+                    <p>
+                        <a asp-action="modifyPassword" asp-route-returnurl="@ViewData["ReturnUrl"]">修改密码</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+<script>
+    /*动态修改地图视窗的高度
+    document.getElementById("main1").style.setProperty('height', $(window).height()  + 'px');
+    document.getElementById("main2").style.setProperty('height', $(window).height()  + 'px');
+
+    function resize() {
+        document.getElementById("main1").style.setProperty('height', $(window).height()  + 'px');
+        document.getElementById("main2").style.setProperty('height', $(window).height()  + 'px');
+
+    }
+    window.onresize = function () {
+        alert("aa");
+            resize();
+        };*/
+</script>
