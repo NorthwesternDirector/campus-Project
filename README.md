@@ -11,7 +11,7 @@
 <div align=center><img width=750px  src="https://github.com/NorthwesternDirector/campus-Project/blob/master/captures/2.png"></div>
 <div align=center><img width=750px  src="https://github.com/NorthwesternDirector/campus-Project/blob/master/captures/19.png"></div>
 
-2. 加载瓦片地图（底图），将校园点位信息展示在地图上，并可进行查询与空间统计（绘制空间范围统计范围内的POI信息）
+2. 加载瓦片地图，将校园点位信息展示在地图上并可进行查询与空间统计（绘制空间范围统计范围内的POI信息）
 <div align=center><img width=750px  src="https://github.com/NorthwesternDirector/campus-Project/blob/master/captures/5.png"></div>
 <div align=center><img width=750px  src="https://github.com/NorthwesternDirector/campus-Project/blob/master/captures/6.png"></div>
 
@@ -31,7 +31,7 @@
 <div align=center><img width=750px  src="https://github.com/NorthwesternDirector/campus-Project/blob/master/captures/15.png"></div>
 <div align=center><img width=750px  src="https://github.com/NorthwesternDirector/campus-Project/blob/master/captures/16.png"></div>
 
-6. 用户权限管理模块，可以修改用户权限属性
+6. 用户权限管理模块，可进行修改用户权限属性、密码、删除用户操作，并创建带权限的用户
 <div align=center><img width=750px  src="https://github.com/NorthwesternDirector/campus-Project/blob/master/captures/11.png"></div>
 <div align=center><img width=750px  src="https://github.com/NorthwesternDirector/campus-Project/blob/master/captures/17.png"></div>
 
